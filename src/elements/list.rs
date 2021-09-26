@@ -1,6 +1,7 @@
 use super::tile::Tile;
 
 // List of tiles, individual types
+#[derive(Debug)]
 pub struct List {
     name: String,
     tiles: Vec<Tile>
@@ -8,36 +9,39 @@ pub struct List {
 
 impl List {
     // Constructor
-    fn new(name: String) -> List {
+    pub fn new(name: String) -> List {
         List {name, tiles: vec![]}
     }
 
     // Getters and setters
-    fn get_name(&self) -> &String {
+    pub fn get_name(&self) -> &String {
         &self.name
     }
 
-    fn get_tiles(&self) -> &Vec<Tile> {
+    pub fn get_tiles(&self) -> &Vec<Tile> {
         &self.tiles
     }
 
-    fn get_tile(&self, index: usize) -> &Tile {
-        &self.tiles.get(index).unwrap()
+    pub fn get_tile(&mut self, index: usize) -> &mut Tile {
+        if index > self.tiles.len() {
+            panic!("tile index out of range");
+        }
+        &mut self.tiles[index]
     }
 
-    fn set_name(&mut self, name: String) {
+    pub fn set_name(&mut self, name: String) {
         self.name = name;
     }
 
-    fn push_tile(&mut self, tile: Tile) {
+    pub fn push_tile(&mut self, tile: Tile) {
         self.tiles.push(tile);
     }
 
-    fn pop_tile(&mut self) {
-        self.tiles.pop();
+    pub fn pop_tile(&mut self) -> Option<Tile> {
+        self.tiles.pop()
     }
 
-    fn remove_tile(&mut self, index: usize) {
+    pub fn remove_tile(&mut self, index: usize) {
         self.tiles.remove(index);
     }
 }

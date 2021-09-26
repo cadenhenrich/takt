@@ -1,6 +1,7 @@
 use tui::style::Color;
 
 // Tag used to represent a category of tiles
+#[derive(Debug)]
 pub struct Tag {
     name: String,
     color: Color,
@@ -8,24 +9,24 @@ pub struct Tag {
 
 impl Tag {
     // Constructor
-    fn new(name: String, color: Color) -> Tag {
+    pub fn new(name: String, color: Color) -> Tag {
         Tag {name, color}
     }
 
     // Getters and setters
-    fn set_name(&mut self, name: String) {
+    pub fn set_name(&mut self, name: String) {
         self.name = name;
     }
 
-    fn set_color(&mut self, color: Color) {
+    pub fn set_color(&mut self, color: Color) {
         self.color = color;
     }
 
-    fn get_name(&self) -> &String {
+    pub fn get_name(&self) -> &String {
         &self.name
     }
 
-    fn get_color(&self) -> Color {
+    pub fn get_color(&self) -> Color {
         self.color
     }
 }
